@@ -82,6 +82,9 @@
             document.getElementById('confirmpwdError').innerText = "";
         }
 
+        // Store registered email in localStorage
+        localStorage.setItem('registeredEmail', email);
+
         alert("Successfully Signed Up\nUsername: " + username + "\nEmail: " + email);
         window.location.href = "1login.html";
         return false;
