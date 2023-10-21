@@ -8,10 +8,9 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
   <style>
     body {
-      background-image: url(https://t3.ftcdn.net/jpg/06/45/35/88/240_F_645358854_83W0w6kvnYyXjxuFmahAkC9k1mJ7LL1H.jpg);
+      background-image: url(https://images.prismic.io/oxylabs-sm/1878ccd0-3ae0-4649-8ad0-6a0471e919b7_V01_BlogHeader_HTTP_requests_Nodejsx2.png?auto=compress,format&rect=0,0,2400,1200&w=1200&h=600&fm=webp&q=75);
       background-size: cover;
       background-repeat: no-repeat;
       background-attachment: fixed;
@@ -43,6 +42,16 @@
 
     .content {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .content-inner {
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
     }
 
     /* Styling for the footer */
@@ -65,7 +74,7 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <div class="container">
-      <a class="navbar-brand" href="#">KCC Cricket Club</a>
+      <a class "navbar-brand" href="#">API</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -86,8 +95,11 @@
   </nav>
 
   <div class="content">
-    <!-- Your page content here -->
-    <!-- You can add your content here -->
+    <div class="content-inner">
+      <h2>Fetching API</h2>
+      <h3>Comments from API:</h3>
+      <ul id="commentsList"></ul>
+    </div>
   </div>
 
   <!-- Footer -->
@@ -101,5 +113,25 @@
     </div>
   </footer>
   <!-- End of Footer -->
+
+  <script>
+    // Function to fetch and display comments for a given ID
+    function fetchComment(id) {
+      fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
+        .then(response => response.json())
+        .then(comment => {
+          const commentsList = document.getElementById('commentsList');
+          const listItem = document.createElement('li');
+          listItem.textContent = `Id: ${comment.id}, Name: ${comment.name}, Email: ${comment.email}`;
+          commentsList.appendChild(listItem);
+        })
+        .catch(error => console.error(error));
+    }
+
+    // Fetch comments for IDs from 1 to 10
+    for (let id = 1; id <= 10; id++) {
+      fetchComment(id);
+    }
+  </script>
 </body>
 </html>
