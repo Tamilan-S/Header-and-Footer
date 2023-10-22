@@ -27,27 +27,27 @@
     <form onsubmit="return showSuccessMessage()">
         <div class="mb-3 mt-3">
             <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required>
             <span id="usernameError" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label for="contact">Contact Number:</label>
-            <input type="tel" class="form-control" id="contact" placeholder="Enter contact number" name="contact">
+            <input type="tel" class "form-control" id="contact" placeholder="Enter contact number" name="contact" required>
             <span id="contactError" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
             <span id="emailError" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label for="pwd">Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd" required>
             <span id="passwordError" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label for="confirmpwd">Confirm Password:</label>
-            <input type="password" class="form-control" id="confirmpwd" placeholder="Confirm password" name="confirmpwd">
+            <input type="password" class="form-control" id="confirmpwd" placeholder="Confirm password" name="confirmpwd" required>
             <span id="confirmpwdError" class="text-danger"></span>
         </div>
         <div class="form-check mb-3">
@@ -82,8 +82,9 @@
             document.getElementById('confirmpwdError').innerText = "";
         }
 
-        // Store registered email in localStorage
+        // Store registered email and password in localStorage
         localStorage.setItem('registeredEmail', email);
+        localStorage.setItem('registeredPassword', password);
 
         alert("Successfully Signed Up\nUsername: " + username + "\nEmail: " + email);
         window.location.href = "1login.html";
